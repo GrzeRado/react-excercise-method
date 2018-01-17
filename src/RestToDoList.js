@@ -5,7 +5,9 @@ const databaseUrl = 'https://ad-snadbox.firebaseio.com/JFDDL3/restToDo/grzegorz/
 class RestToDoList extends React.Component {
     state = {
         list: null,
-        newTaskName: 'Wpisz nowy task'
+        newTaskName: '',
+        currentlyEditedTask: null,
+        currentlyEditedTaskName: taskName
     }
 
     componentWillMount() {
@@ -26,13 +28,21 @@ class RestToDoList extends React.Component {
             }))
     }
 
+    deleteTask = (taskId) => {
+        fetch(
+            databaseUrl + 'list/' + taskId + '/.json',
+            {method: 'DELETE'}
+        )
+            .then(() => this.getData())
+    }
+
+
     handleInputChange = (e) => this.setState({
         newTaskName: e.target.value
     })
 
     handleButtonClick = () => {
         const newTaskObj = {name: this.state.newTaskName}
-
 
         fetch(
             databaseUrl + 'list/.json',
@@ -42,10 +52,24 @@ class RestToDoList extends React.Component {
             }
         )
             .then(() => {
-                this.getData
-                    .catch((err) => alert('Cos poszlo nie tak!'))
+                this.getData()
             })
-        /**/
+            .catch((err) => alert('Cos poszlo nie tak!'))
+    }
+
+    handleTaskNameClick = () => {
+        this.setState({
+            currentlyEditedTask: taskId,
+            currentlyEditedTaskName: taskName
+        })
+
+        handelEditInputChange = (e) => this.setState({
+            currentlyEditedTaskName: e.target.value
+        })
+
+        handleSaveButtonClick = () => {
+            const newTaskObj
+        }
     }
 
     render() {
@@ -57,8 +81,7 @@ class RestToDoList extends React.Component {
                         onChange={this.handleInputChange}
                         value={this.state.newTaskName}
                     />
-                    <button onClick={() => {
-                    }}>
+                    <button onClick={this.handleButtonClick}>
                         Zapisz!
                     </button>
                 </div>
@@ -67,15 +90,35 @@ class RestToDoList extends React.Component {
                     Object.entries(this.state.list || {})
                         .map(([key, task]) => (
                             <div key={key}>
-                                {task.name}
+                                <span onClick={() => this.handleTaskNameClick(key, task.name)}>
+                                    {
+                                        this.state.currentlyEditedTask === key ?
+                                            <span>
+                                                <input
+                                                    onChange={this.handleEditInputChange}
+                                                    value={this.state.currentlyEditedTaskName}
+                                                />
+                                            <button onClick={this.handleSaveButtonClick}>
+                                        Zapisz
+                                        </button>
+                                        </span>
+                                            :
+                                            task.name
+                                    }
+                                    <span>
+                                    <button onClick={() => this.deleteTask(key)}>
+                                        Usuń
+                                    </button>
+
                             </div>
-                        ))
+                    ))
+                    }
+
+                )
+
                 }
-            </div>
-        )
 
-    }
+                }
+                }
 
-}
-
-export default RestToDoList
+                export default RestToDoList
