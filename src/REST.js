@@ -11,7 +11,6 @@ class REST extends React.Component{
             .then(dataFromDatabase => this.setState({
             data: dataFromDatabase
             }))
-
     }
 
     render(){
