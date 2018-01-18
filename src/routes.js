@@ -3,7 +3,8 @@ import DefaultPropsComponent from './DefaultPropsComponent'
 import FetchingJSONFromPublic from './FetchingJSONFromPublic'
 import PassingParamFromURL from './PassingParamFromURL'
 import REST from './REST'
-import RestToDoList from './RestToDoList'
+// import RestToDoList from './RestToDoList'
+import FirebaseComponent from './FirebaseComponent'
 
 const routes = [
     {
@@ -32,11 +33,17 @@ const routes = [
         text: 'Simple REST GET data',
         component: REST
     },
+    // {
+    //     path: '/component/rest-to-do',
+    //     text: 'REST Todo list',
+    //     component: RestToDoList
+    // }.
     {
-        path: '/component/rest-to-do',
-        text: 'REST Todo list',
-        component: RestToDoList
-    }
+        path: '/component/firebase',
+        text: 'Firebase Basics',
+        component: FirebaseComponent
+    },
+
 ]
 
 export default routes
