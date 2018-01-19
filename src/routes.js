@@ -5,6 +5,7 @@ import PassingParamFromURL from './PassingParamFromURL'
 import REST from './REST'
 // import RestToDoList from './RestToDoList'
 import FirebaseComponent from './FirebaseComponent'
+import FirebaseToDo from './FirebaseToDo'
 
 const routes = [
     {
@@ -43,7 +44,11 @@ const routes = [
         text: 'Firebase Basics',
         component: FirebaseComponent
     },
-
+    {
+        path: '/component/firebase-to-do',
+        text: 'Firebase To Do',
+        component: FirebaseToDo
+    },
 ]
 
 export default routes
