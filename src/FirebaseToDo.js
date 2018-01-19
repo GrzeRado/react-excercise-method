@@ -4,13 +4,24 @@ import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 import {List, ListItem} from 'material-ui/List';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
-
+import {lime500} from 'material-ui/styles/colors';
 
 const styles = {
     margin: 20,
     padding: 20,
     textAlign: 'center'
 }
+
+const Task = (props) => (
+    <ListItem
+        primaryText={props.taskName}
+        rightIcon={
+            <ActionDelete
+                onClick={() => props.deleteTask(props.taskId)}
+            />
+        }
+    />
+)
 
 class FirebaseToDo extends React.Component {
     deleteTask = (taskId) => {
@@ -23,6 +34,7 @@ class FirebaseToDo extends React.Component {
                 <TextField
                     hintText={"Nowe zadanie"}
                     fullWidth={true}
+                    underlineFocusStyle={{borderColor: lime500}}
                 />
                 <RaisedButton
                     label={"Dodaj!"}
@@ -31,8 +43,7 @@ class FirebaseToDo extends React.Component {
                 />
                 <List style={{textAlign: 'left'}}>
                     <ListItem
-                        primaryText="Pierwsze zadanie!"
-                        rightIcon={<ActionDelete onClick={this.deleteTask('0')}/>}
+
                     />
                 </List>
             </Paper>
@@ -40,5 +51,4 @@ class FirebaseToDo extends React.Component {
     }
 }
 
-
-    export default  FirebaseToDo
+export default  FirebaseToDo
