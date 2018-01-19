@@ -37,7 +37,7 @@ class FirebaseToDo extends React.Component {
                 console.log('Dane : ', snapshot.val())
 
                 const tasksArray1 = Object.entries(
-                    snapshot.val()
+                    snapshot.val() || {}
                 )
 
                 console.log('Po Object.entries: ', tasksArray1)
@@ -56,7 +56,7 @@ class FirebaseToDo extends React.Component {
     }
 
     deleteTask = (taskId) => {
-        alert(taskId)
+        database.ref(`/firebaseToDoList/${taskId}`).remove()
     }
 
     render() {
