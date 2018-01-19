@@ -1,41 +1,78 @@
 import React from 'react'
 import LogIn from './LogIn'
 
-import {auth} from './firebase'
+import {auth, googleProvider} from './firebase'
 
 
 class FirebaseLogin extends React.Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        isLoggedIn: false
     }
 
+    componentWillMount() {
+        auth.onAuthStateChanged((user)=>
+        {
+            if (user) {
+                console.log('Zalogowane!')
+                this.setState({
+                    isLoggedIn: true
+                })
+            } else {
+                console.log('Wylogowane!')
+                this.setState({
+                    isLoggedIn: false
+                })
+            }
+        }
+    )
+}
 
-    onEmailChange = (event, value) => {this.setState({
+onEmailChange = (event, value) => {
+    this.setState({
         email: value
-    })}
-    onPasswordChange = (event, value) => {this.setState({
+    })
+}
+onPasswordChange = (event, value) => {
+    this.setState({
         password: value
-    })}
+    })
+}
 
-    onLogInClick = () => {
+onLogInClick = () => {
         auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(()=>console.log('Zalogowano!'))
+            .then(() => console.log('Zalogowane!'))
     }
 
-        onLogInByGoogleClick = () => {alert('onLogInByGoogleClick')}
+onLogInClick = () => {
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => console.log('Zalogowano!'))
+}
 
-    render(){
-        return (
+onLogInByGoogleClick = () => {
+    alert('onLogInByGoogleClick')
+}
+
+render()
+{
+    return (
+        auth.currentUser ?
+            <div>Czesc jestes zalogowany!
+            <button onClick={()=>auth.signOut()}>
+                Wyloguj
+            </button>
+            </div>
+            :
             <LogIn
-                onEmailChange = {this.onEmailChange}
-                onPasswordChange = {this.onPasswordChange}
-                onLogInClick = {this.onLogInClick}
-                onLogInByGoogleClick = {this.onLogInByGoogleClick}
+                onEmailChange={this.onEmailChange}
+                onPasswordChange={this.onPasswordChange}
+                onLogInClick={this.onLogInClick}
+                onLogInByGoogleClick={this.onLogInByGoogleClick}
 
             />
-        )
-    }
+    )
+}
 }
 
 export default FirebaseLogin
