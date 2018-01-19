@@ -5,7 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {List, ListItem} from 'material-ui/List';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import {lime500} from 'material-ui/styles/colors';
-import database from '/.firebase';
+
+import {database} from './firebase'
 
 const styles = {
     margin: 20,
@@ -30,19 +31,26 @@ class FirebaseToDo extends React.Component {
     }
 
     componentWillMount() {
-        database.ref('/dataToDO')
+        database.ref('/firebaseToDoList')
             .on('value', (snapshot) => {
-                const taskArray = Object.entries(
+
+                console.log('Dane : ', snapshot.val())
+
+                const tasksArray1 = Object.entries(
                     snapshot.val()
-                ).map(([key, value]) => {
+                )
+
+                console.log('Po Object.entries: ', tasksArray1)
+
+                const tasksArray2 = tasksArray1.map(([key, value]) => {
                     value.key = key
                     return value
                 })
 
-                console.log(tasksArray)
+                console.log('Po .map : ', tasksArray2)
 
                 this.setState({
-                    tasks: tasksArray
+                    tasks: tasksArray2
                 })
             })
     }
@@ -66,16 +74,16 @@ class FirebaseToDo extends React.Component {
                 />
                 <List style={{textAlign: 'left'}}>
                     {
-                        this.state.task
+                        this.state.tasks
                         &&
                         this.state.tasks.map((task) => (
-                        <Task
-                            key={task.key}
-                            taskName={task.name}
-                            taskId={task.key}
-                            deleteTask={this.deleteTask}
-                        />
-                    ))
+                            <Task
+                                key={task.key}
+                                taskName={task.name}
+                                taskId={task.key}
+                                deleteTask={this.deleteTask}
+                            />
+                        ))
                     }
                 </List>
             </Paper>
