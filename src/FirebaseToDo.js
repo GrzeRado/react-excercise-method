@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {List, ListItem} from 'material-ui/List';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import {lime500} from 'material-ui/styles/colors';
-
 import {database} from './firebase'
 
 const styles = {
@@ -27,11 +26,13 @@ const Task = (props) => (
 
 class FirebaseToDo extends React.Component {
     state = {
-        tasks: null
+        tasks: null,
+        newTaskName: ''
+
     }
 
     componentWillMount() {
-        database.ref('/firebaseToDoList')
+        database.ref('/dataToDo')
             .on('value', (snapshot) => {
 
                 console.log('Dane : ', snapshot.val())
@@ -56,18 +57,40 @@ class FirebaseToDo extends React.Component {
     }
 
     deleteTask = (taskId) => {
-        database.ref(`/firebaseToDoList/${taskId}`).remove()
+        database.ref(`/dataToDo/${taskId}`).remove()
     }
+
+    addTask = () => {
+        if (!this.state.newTaskName) {
+            alert('Nie można zapisać pustego taska!')
+            return
+        }
+
+        database.ref('/dataToDo')
+            .push({
+                name: this.state.newTaskName
+            })
+
+        this.setState({
+            newTaskName: ''
+        })
+
+    }
+
 
     render() {
         return (
             <Paper style={styles}>
                 <TextField
+                    value={this.state.newTaskName}
+                    onChange={(e, value) => this.setState({newTaskName: value})}
                     hintText={"Nowe zadanie"}
                     fullWidth={true}
                     underlineFocusStyle={{borderColor: lime500}}
+
                 />
                 <RaisedButton
+                    onClick={this.addTask}
                     label={"Dodaj!"}
                     primary={true}
                     fullWidth={true}

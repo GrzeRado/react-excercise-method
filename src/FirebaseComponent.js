@@ -10,9 +10,9 @@ class FirebaseComponent extends React.Component {
     }
 
     setButtonHandler = () => {
-        let parsedData = null
+        let parsedData
         try{
-            const parsedData = JSON.parse(this.state.dataToSave)
+            parsedData = JSON.parse(this.state.dataToSave)
         }
         catch(error){
             alert('Wpisales niepoprawnego JSONa!')
