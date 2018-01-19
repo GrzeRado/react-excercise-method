@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {List, ListItem} from 'material-ui/List';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import {lime500} from 'material-ui/styles/colors';
+import database from '/.firebase';
 
 const styles = {
     margin: 20,
@@ -24,6 +25,28 @@ const Task = (props) => (
 )
 
 class FirebaseToDo extends React.Component {
+    state = {
+        tasks: null
+    }
+
+    componentWillMount() {
+        database.ref('/dataToDO')
+            .on('value', (snapshot) => {
+                const taskArray = Object.entries(
+                    snapshot.val()
+                ).map(([key, value]) => {
+                    value.key = key
+                    return value
+                })
+
+                console.log(tasksArray)
+
+                this.setState({
+                    tasks: tasksArray
+                })
+            })
+    }
+
     deleteTask = (taskId) => {
         alert(taskId)
     }
@@ -42,13 +65,22 @@ class FirebaseToDo extends React.Component {
                     fullWidth={true}
                 />
                 <List style={{textAlign: 'left'}}>
-                    <ListItem
-
-                    />
+                    {
+                        this.state.task
+                        &&
+                        this.state.tasks.map((task) => (
+                        <Task
+                            key={task.key}
+                            taskName={task.name}
+                            taskId={task.key}
+                            deleteTask={this.deleteTask}
+                        />
+                    ))
+                    }
                 </List>
             </Paper>
         )
     }
 }
 
-export default  FirebaseToDo
+export default FirebaseToDo
