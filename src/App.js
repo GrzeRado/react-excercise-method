@@ -27,29 +27,29 @@ class App extends Component {
             <Provider store={store}>
                 <MuiThemeProvider>
 
-                <Router>
-                    <div>
-                        <AppBar
-                            title="My First App"
-                            onLeftIconButtonClick={this.drawerToggle}
-                        />
-                        <SideBar
-                            isDrawerOpen={this.state.isDrawerOpen}
-                            drawerToggle={this.drawerToggle}
-                        />
+                    <Router>
+                        <div>
+                            <AppBar
+                                title="My First App"
+                                onLeftIconButtonClick={this.drawerToggle}
+                            />
+                            <SideBar
+                                isDrawerOpen={this.state.isDrawerOpen}
+                                drawerToggle={this.drawerToggle}
+                            />
 
-                        {
-                            routes.map(route => (
-                                <Route
-                                    key={route.path}
-                                    path={route.path}
-                                    component={route.component}
-                                />
-                            ))
-                        }
-                    </div>
-                </Router>
-            </MuiThemeProvider>
+                            {
+                                routes.map(route => (
+                                    <Route
+                                        key={route.path}
+                                        path={route.path}
+                                        component={route.component}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </Router>
+                </MuiThemeProvider>
             </Provider>
         )
     }

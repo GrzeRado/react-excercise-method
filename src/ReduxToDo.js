@@ -6,6 +6,9 @@ import {List, ListItem} from 'material-ui/List';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import {lime500} from 'material-ui/styles/colors';
 
+import {connect} from 'react-redux'
+import {addTask} from './state/todo'
+
 const styles = {
     margin: 20,
     padding: 20,
@@ -33,13 +36,13 @@ class ReduxToDo extends React.Component {
             <Paper style={styles}>
                 <TextField
                     value={this.state.newTaskName}
-                    onChange={(e, value)=> this.setState({newTaskName: value})}
+                    onChange={(event, value) => this.setState({newTaskName: value})}
                     hintText={"Nowe zadanie"}
                     fullWidth={true}
                     underlineFocusStyle={{borderColor: lime500}}
                 />
                 <RaisedButton
-                    onClick={this.props.addTask}
+                    onClick={() => this.props.addTask(this.state.newTaskName)}
                     label={"Dodaj!"}
                     primary={true}
                     fullWidth={true}
@@ -63,4 +66,15 @@ class ReduxToDo extends React.Component {
     }
 }
 
-export default ReduxToDo
+const mapStateToProps = state => ({
+    tasks: state.todo.tasks
+})
+
+const mapDispatchToProps = dispatch => ({
+    addTask: name => dispatch(addTask(name))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ReduxToDo)
