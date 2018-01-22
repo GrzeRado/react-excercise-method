@@ -7,6 +7,7 @@ import REST from './REST'
 import FirebaseComponent from './FirebaseComponent'
 import FirebaseToDo from './FirebaseToDo'
 import FirebaseLogin from './FirebaseLogin'
+import ReduxToDo from './ReduxToDo'
 
 const routes = [
     {
@@ -55,6 +56,12 @@ const routes = [
         text: 'Firebase Login',
         component: FirebaseLogin
     },
+    {
+        path: '/component/redux-to-do',
+        text: 'Redux ToDo',
+        component: ReduxToDo
+    },
+
 ]
 
 export default routes
