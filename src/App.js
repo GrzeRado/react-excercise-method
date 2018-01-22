@@ -8,6 +8,9 @@ import SideBar from './SideBar'
 
 import routes from './routes'
 
+import {Provider} from 'react-redux'
+import store from './store'
+
 class App extends Component {
     state = {
         isDrawerOpen: false
@@ -21,7 +24,9 @@ class App extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
+            <Provider store={store}>
+                <MuiThemeProvider>
+
                 <Router>
                     <div>
                         <AppBar
@@ -45,6 +50,7 @@ class App extends Component {
                     </div>
                 </Router>
             </MuiThemeProvider>
+            </Provider>
         )
     }
 }

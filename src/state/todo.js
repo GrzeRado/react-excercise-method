@@ -9,8 +9,8 @@ const initialState = {
     tasks: []
 }
 
-export default (state = initialState, action) => {
-    switch (action.type){
+export default (state = initialState, action) => { // change state and add reducer to store
+    switch (action.type){ucer
         case 'ADD_TASK':
             return {
                 ...state,
