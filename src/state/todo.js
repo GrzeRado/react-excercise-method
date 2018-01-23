@@ -18,8 +18,8 @@ const initialState = {
     tasks: []
 }
 
-export default (state = initialState, action) => { // change state and add reducer to store
-    switch (action.type){
+export default (state = initialState, action) => {
+    switch (action.type) {
         case ADD_TASK:
             return {
                 ...state,
@@ -30,12 +30,11 @@ export default (state = initialState, action) => { // change state and add reduc
                     }
                 ])
             }
-        case DELETE_TASK,
-                return {
-                    ...state,
-                    tasks: state.tasks.filter(task => task.key !== action.key)
-                }
-
+        case DELETE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.key !== action.key)
+            }
         default:
             return state
     }
