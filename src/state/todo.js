@@ -1,6 +1,5 @@
 const ADD_TASK = 'todo/ADD_TASK'
 const DELETE_TASK = 'todo/DELETE_TASK'
-
 let nextTaskId = 0
 
 export const addTask = name => ({

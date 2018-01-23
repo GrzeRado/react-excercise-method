@@ -1,8 +1,10 @@
 import {createStore, combineReducers} from 'redux'
 import todoReducer from './state/todo'
+import textReducer from './state/text'
 
 const reducer = combineReducers({
-    todo: todoReducer
+    todo: todoReducer,
+    text: textReducer
 })
 
 const store = createStore(
