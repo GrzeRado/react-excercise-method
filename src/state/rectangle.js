@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         case TOGGLE_RECT:
             return {
                 ...state,
-                isReactVisible: (isReactVisible)
+                isReactVisible: !state.isReactVisible
             }
         default:
             return state

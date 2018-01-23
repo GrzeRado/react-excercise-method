@@ -23,7 +23,9 @@ class ReduxRectangle extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    isRectVisible
+})
 
 const mapDispatchToProps = dispatch => ({})
 
