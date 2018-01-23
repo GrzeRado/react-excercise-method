@@ -1,13 +1,13 @@
-import Counter from './Counter'
-import DefaultPropsComponent from './DefaultPropsComponent'
-import FetchingJSONFromPublic from './FetchingJSONFromPublic'
-import PassingParamFromURL from './PassingParamFromURL'
-import REST from './REST'
+import Counter from './components/Counter'
+import DefaultPropsComponent from './components/DefaultPropsComponent'
+import FetchingJSONFromPublic from './components/FetchingJSONFromPublic'
+import PassingParamFromURL from './components/PassingParamFromURL'
+import REST from './components/REST'
 // import RestToDoList from './RestToDoList'
-import FirebaseComponent from './FirebaseComponent'
-import FirebaseToDo from './FirebaseToDo'
-import FirebaseLogin from './FirebaseLogin'
-import ReduxToDo from './ReduxToDo'
+import FirebaseComponent from './components/FirebaseComponent'
+import FirebaseToDo from './components/FirebaseToDo'
+import FirebaseLogin from './components/FirebaseLogIn'
+import ReduxToDo from './components/ReduxToDo'
 
 const routes = [
     {

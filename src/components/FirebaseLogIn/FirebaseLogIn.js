@@ -1,8 +1,7 @@
 import React from 'react'
 import LogIn from './LogIn'
 
-import {auth, googleProvider} from './firebase'
-
+import {auth, googleProvider} from '../../firebase'
 
 class FirebaseLogin extends React.Component {
     state = {

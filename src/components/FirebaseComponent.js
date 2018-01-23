@@ -2,7 +2,7 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 
-import {database} from './firebase'
+import {database} from '../firebase'
 
 class FirebaseComponent extends React.Component {
     state = {

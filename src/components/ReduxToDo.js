@@ -5,7 +5,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {List, ListItem} from 'material-ui/List';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import {lime500} from 'material-ui/styles/colors';
-import {database} from './firebase'
+
+import {connect} from 'react-redux'
+import {addTask, deleteTask} from '../state/todo'
 
 const styles = {
     margin: 20,
@@ -19,92 +21,43 @@ const Task = (props) => (
         rightIcon={
             <ActionDelete
                 onClick={() => props.deleteTask(props.taskId)}
+                // key => dispatch(deleteTask(key))
             />
         }
     />
 )
 
-class FirebaseToDo extends React.Component {
+class ReduxToDo extends React.Component {
     state = {
-        tasks: null,
-        newTaskName: ''
-
+        newTaskName: 'zupa'
     }
-
-    componentWillMount() {
-        database.ref('/dataToDo')
-            .on('value', (snapshot) => {
-
-                console.log('Dane : ', snapshot.val())
-
-                const tasksArray1 = Object.entries(
-                    snapshot.val() || {}
-                )
-
-                console.log('Po Object.entries: ', tasksArray1)
-
-                const tasksArray2 = tasksArray1.map(([key, value]) => {
-                    value.key = key
-                    return value
-                })
-
-                console.log('Po .map : ', tasksArray2)
-
-                this.setState({
-                    tasks: tasksArray2
-                })
-            })
-    }
-
-    deleteTask = (taskId) => {
-        database.ref(`/dataToDo/${taskId}`).remove()
-    }
-
-    addTask = () => {
-        if (!this.state.newTaskName) {
-            alert('Nie można zapisać pustego taska!')
-            return
-        }
-
-        database.ref('/dataToDo')
-            .push({
-                name: this.state.newTaskName
-            })
-
-        this.setState({
-            newTaskName: ''
-        })
-
-    }
-
 
     render() {
         return (
             <Paper style={styles}>
                 <TextField
                     value={this.state.newTaskName}
-                    onChange={(e, value) => this.setState({newTaskName: value})}
+                    onChange={(event, value) => this.setState({newTaskName: value})}
                     hintText={"Nowe zadanie"}
                     fullWidth={true}
                     underlineFocusStyle={{borderColor: lime500}}
-
                 />
                 <RaisedButton
-                    onClick={this.addTask}
+                    onClick={() => this.props.addTask(this.state.newTaskName)}
                     label={"Dodaj!"}
                     primary={true}
                     fullWidth={true}
                 />
                 <List style={{textAlign: 'left'}}>
                     {
-                        this.state.tasks
+                        this.props.tasks
                         &&
-                        this.state.tasks.map((task) => (
+                        this.props.tasks.map((task) => (
                             <Task
                                 key={task.key}
                                 taskName={task.name}
                                 taskId={task.key}
-                                deleteTask={this.deleteTask}
+                                deleteTask={this.props.deleteTask}
                             />
                         ))
                     }
@@ -114,4 +67,16 @@ class FirebaseToDo extends React.Component {
     }
 }
 
-export default FirebaseToDo
+const mapStateToProps = state => ({
+    tasks: state.todo.tasks
+})
+
+const mapDispatchToProps = dispatch => ({
+    addTask: name => dispatch(addTask(name))
+    deleteTask: () => dispatch()(deleteTask(key))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ReduxToDo)
