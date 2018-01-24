@@ -5,7 +5,7 @@ import rectangleReducer from './state/rectangle'
 
 const reducer = combineReducers({
     todo: todoReducer,
-    text: textReducer
+    text: textReducer,
     rectangle: rectangleReducer
 })
 

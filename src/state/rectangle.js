@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_RECT:
             return {
-                ...state
+                ...state,
                 isReactVisible: !state.isReactVisible
             }
         default:

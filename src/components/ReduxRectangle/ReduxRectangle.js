@@ -8,15 +8,20 @@ class ReduxRectangle extends React.Component {
     render() {
         return (
             <div>
-                <div
-                    style={{
-                        this.props.isRectVisible ?
-                        width: 200,
-                        height: 200,
-                        backgroundColor: 'red'
-                    }}
-                >
-                </div>
+                {
+
+                    this.props.isRectVisible ?
+                        <div
+                            style={{
+                                width: 200,
+                                height: 200,
+                                backgroundColor: 'red'
+                            }}
+                        >
+                        </div>
+                        :
+                        null
+                }
                 <RaisedButton
                     label="TOGGLE"
                     onClick={this.props.handleToggleRect}
