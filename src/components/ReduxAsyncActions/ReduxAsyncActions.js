@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getRandomUserData: () => dispatch(fetchData)
+    getRandomUserData: () => dispatch(fetchData())
 })
 
 

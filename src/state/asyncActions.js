@@ -6,9 +6,13 @@ const setData = data => ({
 })
 
 
-export const fetchData = () => () => {  //() => () =>{} function () returned another function () => {}
+export const fetchData = () => (dispatch, getState) => {  //() => () =>{} function () returned another function () => {}
 
     //fetch
+    fetch('https://randomuser.me/api')
+        .then(response => response.json())
+        .then(data => dispatch(setData(data.results[0])))
+
 }
 
 const initialState = {
