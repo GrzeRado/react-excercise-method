@@ -19,7 +19,7 @@ class ReduxCounter extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps    = state => ({
     counterValue: state.reduxCounter.counterValue
 })
 
