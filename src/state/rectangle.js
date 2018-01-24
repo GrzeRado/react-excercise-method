@@ -2,7 +2,7 @@
 const TOGGLE_RECT = 'rectangle/TOGGLE_RECT'
 
 //action creator - export by name
-export const toggleRectangle = () => ({
+export const toggleRect = () => ({
     type: TOGGLE_RECT
 })
 
@@ -21,6 +21,5 @@ export default (state = initialState, action) => {
             }
         default:
             return state
-
     }
 }

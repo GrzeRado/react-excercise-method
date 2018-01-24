@@ -1,6 +1,8 @@
 import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
+
 import {connect} from 'react-redux'
+import {toggleRect} from '../../state/rectangle'
 
 class ReduxRectangle extends React.Component {
     render() {
@@ -17,6 +19,7 @@ class ReduxRectangle extends React.Component {
                 </div>
                 <RaisedButton
                     label="TOGGLE"
+                    onClick={this.props.handleToggleRect}
                 />
             </div>
         )
@@ -25,10 +28,14 @@ class ReduxRectangle extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    //nazwaPropsa: kawałek.stanu.ktory.przypinamy
     isRectVisible: state.rectangle.isReactVisible
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+//nazwaPropsa: funkcja.ktora.wywola.dispatch(z akcją)
+    handleToggleRect: () => dispatch(toggleRect())
+})
 
 export default connect(
     mapStateToProps,
