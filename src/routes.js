@@ -72,6 +72,11 @@ const routes = [
         path: '/component/redux-rectangle',
         text: 'Redux Rectangle',
         component: ReduxRectangle
+    }
+    {
+        path: '/component/redux-counter',
+        text: 'Redux Counter',
+        component: ReduxCounter // import counter
     },
 
 ]
