@@ -23,8 +23,12 @@ class ReduxRectangle extends React.Component {
                         null
                 }
                 <RaisedButton
-                    label="TOGGLE"
+                    label={this.props.isRectVisible ? "UKRYJ" : "POKAZ"}
                     onClick={this.props.handleToggleRect}
+                />
+                <RaisedButton
+                    label="WŁĄCZ MIGANIE"
+                    onClick={() => setInterval(this.props.handleToggleRect, 500)}
                 />
             </div>
         )
