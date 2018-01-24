@@ -8,6 +8,7 @@ class ReduxRectangle extends React.Component {
             <div>
                 <div
                     style={{
+                        this.props.isRectVisible ?
                         width: 200,
                         height: 200,
                         backgroundColor: 'red'
@@ -24,7 +25,7 @@ class ReduxRectangle extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isRectVisible
+    isRectVisible: state.rectangle.isReactVisible
 })
 
 const mapDispatchToProps = dispatch => ({})

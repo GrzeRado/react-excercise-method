@@ -1,23 +1,26 @@
-const TOGGLE = 'rectangle/TOGGLE_RECT'
+//ACTION_TYPE
+const TOGGLE_RECT = 'rectangle/TOGGLE_RECT'
 
-
-const toggleRectangle = () => ({
+//action creator - export by name
+export const toggleRectangle = () => ({
     type: TOGGLE_RECT
 })
 
+//initial state
 const initialState = {
     isReactVisible: true
 }
 
-
+// reducer - export default
 export default (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_RECT:
             return {
-                ...state,
+                ...state
                 isReactVisible: !state.isReactVisible
             }
         default:
             return state
+
     }
 }
