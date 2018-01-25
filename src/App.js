@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Auth from './components/Auth'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
@@ -26,6 +27,7 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
+                <Auth>
                 <MuiThemeProvider>
 
                     <Router>
@@ -52,6 +54,7 @@ class App extends Component {
                         </div>
                     </Router>
                 </MuiThemeProvider>
+                </Auth>
             </Provider>
         )
     }
