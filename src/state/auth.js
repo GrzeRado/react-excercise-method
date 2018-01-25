@@ -15,6 +15,12 @@ export const initAuth = () => (dispatch, getState) => {
     })
 }
 
+export const logIn = () => (dispatch, getState) => {
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => console.log('Logged in!'))
+}
+
+
 const initialState = {
     user: null
 }
