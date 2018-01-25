@@ -7,8 +7,7 @@ import rectangleReducer from './state/rectangle'
 import reduxCounterReducer from './state/reduxCounter'
 import asyncActionsReducer from './state/asyncActions'
 import loadingReducer from './state/loading'
-import authReducer from './state/auth'
-import authReducer, {initAuth} from "./state/auth";
+import authReducer, {initAuth} from './state/auth'
 
 const reducer = combineReducers({
     todo: todoReducer,
@@ -18,7 +17,6 @@ const reducer = combineReducers({
     asyncActions: asyncActionsReducer,
     loading: loadingReducer,
     auth: authReducer
-
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
