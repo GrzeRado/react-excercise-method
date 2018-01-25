@@ -15,11 +15,21 @@ class Auth extends React.Component {
 
     }
 
-handleInput = (event, value) => {
-        this.setState({
-            loginEmail: value
-        })
-}
+    handleInput = (nameInState, e, v) => {
+        const newState = {}
+        newState[nameInState] = value
+        this.setState(newState)
+    }
+
+   /// we can use the same as below
+    //
+    // handleInput = (nameInState, e, v) => {
+        const newState = {}
+        newState[nameInState] = value
+        this.setState(newState)
+    // }
+
+
 
     render() {
         return (
@@ -28,7 +38,8 @@ handleInput = (event, value) => {
                 :
                 <div>
                     <LogIn
-                        onEmailChange={() => {this.handleInput
+                        onEmailChange={() => {
+                            (e, v) => (this.handleInput('loginEmail', e, v)
                         }}
                         onPasswordChange={() => {
                         }}
