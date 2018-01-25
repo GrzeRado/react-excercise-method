@@ -1,7 +1,12 @@
 import {auth} from '../firebase'
 
+const SET_USER = 'auth/SET_USER'
 
 
+const setUser = (user) => ({
+    type: SET_USER,
+    userData: user
+})
 
 export const initAuth = () => (dispatch, getState) => {
     auth.onAuthStateChanged((user)=>{
