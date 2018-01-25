@@ -27,34 +27,33 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Auth>
                 <MuiThemeProvider>
+                    <Auth>
+                        <Router>
+                            <div>
+                                <LoadingIndicator/>
+                                <AppBar
+                                    title="My First App"
+                                    onLeftIconButtonClick={this.drawerToggle}
+                                />
+                                <SideBar
+                                    isDrawerOpen={this.state.isDrawerOpen}
+                                    drawerToggle={this.drawerToggle}
+                                />
 
-                    <Router>
-                        <div>
-                            <LoadingIndicator/>
-                            <AppBar
-                                title="My First App"
-                                onLeftIconButtonClick={this.drawerToggle}
-                            />
-                            <SideBar
-                                isDrawerOpen={this.state.isDrawerOpen}
-                                drawerToggle={this.drawerToggle}
-                            />
-
-                            {
-                                routes.map(route => (
-                                    <Route
-                                        key={route.path}
-                                        path={route.path}
-                                        component={route.component}
-                                    />
-                                ))
-                            }
-                        </div>
-                    </Router>
+                                {
+                                    routes.map(route => (
+                                        <Route
+                                            key={route.path}
+                                            path={route.path}
+                                            component={route.component}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </Router>
+                    </Auth>Auth>
                 </MuiThemeProvider>
-                </Auth>
             </Provider>
         )
     }

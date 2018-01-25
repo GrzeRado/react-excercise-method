@@ -1,4 +1,7 @@
-import React form 'react'
+import React from 'react'
+
+import LogIn from './LogIn'
+import SignUp from './SignUp'
 
 import {connect} from 'react-redux'
 
@@ -6,17 +9,17 @@ const Auth = (props) => (
     props.userData ?
         props.children
         :
-        <div>Nie zamogowany!</div>
-
+        <div>
+            <LogIn/>
+            <SignUp/>
+        </div>
 )
 
 const mapStateToProps = state => ({
-    userData : state.auth.user
+    userData: state.auth.user
 })
 
-const mapDispatchToProps = dispatch => ({
-
-})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(
     mapStateToProps,
