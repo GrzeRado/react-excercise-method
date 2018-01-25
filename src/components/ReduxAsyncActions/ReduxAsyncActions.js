@@ -9,7 +9,7 @@ class ReduxAsyncActions extends React.Component {
         return (
             <div>
                 <div>
-
+                    {this.props.messageForUser}
 
                 </div>
                     {this.props.randomUserData ?
@@ -33,7 +33,8 @@ class ReduxAsyncActions extends React.Component {
 
 
 const mapStateToProps = state => ({
-    randomUserData: state.asyncActions.randomUserData
+    randomUserData: state.asyncActions.randomUserData,
+    messageForUser: state.asyncActions.messageForUser
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -13,13 +13,17 @@ const fetchingFinished = () => ({type: FETCHING_FINISHED})
 const fetchingFailed = () => ({type: FETCHING_FAILED})
 
 export const fetchData = () => (dispatch, getState) => {
-    fetch('https://randomuser.mme/api')
+    dispatch(fetchingStarted())
+
+    setTimeout(
+    () => fetch('https://randomuser.me/api')
         .then(response => response.json())
         .then(data => {
             dispatch(setData(data.results[0]))
             dispatch(fetchingFinished())
         })
         .catch(err => dispatch(fetchingFailed()))
+    , 800)
 }
 
 const initialState = {
