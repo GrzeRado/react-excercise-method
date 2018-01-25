@@ -10,6 +10,7 @@ const setUser = (user) => ({
 
 export const initAuth = () => (dispatch, getState) => {
     auth.onAuthStateChanged((user)=>{
+        // if not logged in user is null!! //
         dispatch(setUser(user))
     })
 }
@@ -20,11 +21,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type){
-        case SET_USER:
-            return {
-                ...state,
-                user: action.userData
-            }
+        case SET_USER
         default:
             return state
     }
