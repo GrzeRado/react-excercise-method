@@ -15,7 +15,11 @@ const fetchingFailed = () => ({type: FETCHING_FAILED})
 export const fetchData = () => (dispatch, getState) => {
     fetch('https://randomuser.mme/api')
         .then(response => response.json())
-        .then(data => dispatch(setData(data.results[0])))
+        .then(data => {
+            dispatch(setData(data.results[0]))
+            dispatch(fetchingFinished())
+        })
+        .catch(err => dispatch(fetchingFailed()))
 }
 
 const initialState = {
