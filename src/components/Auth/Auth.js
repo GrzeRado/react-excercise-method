@@ -7,4 +7,15 @@ const Auth = (props) => (
 
 )
 
-export default Auth
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Auth)
