@@ -10,8 +10,18 @@ const Auth = (props) => (
         props.children
         :
         <div>
-            <LogIn/>
-            <SignUp/>
+            <LogIn
+            onEmailChange={()=>{}}
+            onPasswordChange={()=>{}}
+            onLogInClick={()=>{}}
+            onLogInByGoogleClick={()=>{}}
+            />
+            <SignUp
+            onEmailChange={()=>{}}
+            onPasswordChange={()=>{}}
+            onRetypePasswordChange={()=>{}}
+            onSignUpClick={()=>{}}
+            />
         </div>
 )
 
