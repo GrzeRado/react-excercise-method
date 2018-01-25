@@ -1,6 +1,8 @@
 import React from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 
+import {connect} from 'react-redux'
+
 const style = {
     wrapper: {
         backgroundColor: '#fff',
@@ -20,12 +22,21 @@ const style = {
 }
 
 
-const LoadingIndicator = () => (
-    <div>
-        <div>
+const LoadingIndicator = (props) => (
+    props.isLoading ?
+    <div style={style.wrapper}>
+        <div style={style.indicator}>
             <CircularProgress size={60}/>
         </div>
     </div>
+        :
+        null
 );
 
-export default LoadingIndicator;
+const mapStateToProps = state => ({
+    isLoading: state.loading.isLoading
+})
+
+export default connect(
+    mapStateToProps
+)(LoadingIndicator)

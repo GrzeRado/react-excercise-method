@@ -1,3 +1,5 @@
+import {startLoading, stopLoading} from './loading'
+
 const SET_DATA = 'asyncActions/SET_DATA'
 const FETCHING_STARTED = 'asyncActions/FETCHING_STARTED'
 const FETCHING_FINISHED = 'asyncActions/FETCHING_FINISHED'
@@ -13,17 +15,24 @@ const fetchingFinished = () => ({type: FETCHING_FINISHED})
 const fetchingFailed = () => ({type: FETCHING_FAILED})
 
 export const fetchData = () => (dispatch, getState) => {
+    dispatch(startLoading())
     dispatch(fetchingStarted())
 
     setTimeout(
-    () => fetch('https://randomuser.me/api')
-        .then(response => response.json())
-        .then(data => {
-            dispatch(setData(data.results[0]))
-            dispatch(fetchingFinished())
-        })
-        .catch(err => dispatch(fetchingFailed()))
-    , 800)
+        () => fetch('https://randomuser.me/api')
+            .then(response => response.json())
+            .then(data => {
+                dispatch(setData(data.results[0]))
+                dispatch(fetchingFinished())
+                dispatch(stopLoading())
+
+            })
+            .catch(err => {
+                dispatch(fetchingFailed())
+                dispatch(stopLoading())
+            })
+        ,
+        1200)
 }
 
 const initialState = {
