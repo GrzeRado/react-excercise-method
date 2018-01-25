@@ -21,14 +21,19 @@ class Auth extends React.Component {
         this.setState(newState)
     }
 
-   /// we can use the same as below
+    /// we can use the same as below comes from ES6. Its very simpler
     //
     // handleInput = (nameInState, e, v) => {
-        const newState = {}
-        newState[nameInState] = value
-        this.setState(newState)
-    // }
+    const
+    newState = {}
+    newState
+    [nameInState] = value
+    this
+.
 
+    setState(newState)
+
+    // }
 
 
     render() {
@@ -39,37 +44,38 @@ class Auth extends React.Component {
                 <div>
                     <LogIn
                         onEmailChange={() => {
-                            (e, v) => (this.handleInput('loginEmail', e, v)
+                            (e, v) => (this.handleInput('loginEmail', e, v))
+                        }
+                            onPasswordChange={() => {(e, v) => (this.handleInput('loginPassword', e, v))
+                        }
+                            onLogInClick={() => {
                         }}
-                        onPasswordChange={() => {
+                            onLogInByGoogleClick={() => {
                         }}
-                        onLogInClick={() => {
-                        }}
-                        onLogInByGoogleClick={() => {
-                        }}
-                    />
-                    <SignUp
-                        onEmailChange={() => {
-                        }}
-                        onPasswordChange={() => {
-                        }}
-                        onRetypePasswordChange={() => {
-                        }}
-                        onSignUpClick={() => {
-                        }}
-                    />
-                </div>
-        )
-    }
-}
+                            />
+                            <SignUp
+                            onEmailChange={() => {(e, v) => (this.handleInput('signUpEmail', e, v))
+                            }}
+                            onPasswordChange={() => {(e, v) => (this.handleInput('signUpPassword', e, v))
 
-const mapStateToProps = state => ({
-    userData: state.auth.user
-})
+                            }}
+                            onRetypePasswordChange={() => {
+                            }}
+                            onSignUpClick={() => {
+                            }}
+                            />
+                            </div>
+                            )
+                        }
+                    }
 
-const mapDispatchToProps = dispatch => ({})
+                    const mapStateToProps=state => ({
+                    userData: state.auth.user
+                })
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Auth)
+                    const mapDispatchToProps = dispatch => ({})
+
+                    export default connect(
+                    mapStateToProps,
+                    mapDispatchToProps
+                    )(Auth)

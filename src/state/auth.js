@@ -10,7 +10,7 @@ const setUser = (user) => ({
 
 export const initAuth = () => (dispatch, getState) => {
     auth.onAuthStateChanged((user)=>{
-
+        dispatch(setUser(user))
     })
 }
 
@@ -20,6 +20,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type){
+        case SET_USER:
+            return {
+                ...state,
+                user: action.userData
+            }
         default:
             return state
     }
