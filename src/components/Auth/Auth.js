@@ -28,10 +28,7 @@ class Auth extends React.Component {
     newState = {}
     newState
     [nameInState] = value
-    this
-.
-
-    setState(newState)
+    this.setState(newState)
 
     // }
 
@@ -73,7 +70,9 @@ class Auth extends React.Component {
                     userData: state.auth.user
                 })
 
-                    const mapDispatchToProps = dispatch => ({})
+                    const mapDispatchToProps = dispatch => ({
+                        onLoginClick: () => dispatch(logIn())
+                        })
 
                     export default connect(
                     mapStateToProps,
