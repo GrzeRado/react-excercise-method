@@ -45,7 +45,11 @@ class Auth extends React.Component {
                         }
                             onPasswordChange={() => {(e, v) => (this.handleInput('loginPassword', e, v))
                         }
-                            onLogInClick={() => {
+                            onLogInClick={() => {() => this.props.onLogInClick(
+                                this.state.loginEmail,
+                                this.state.loginPassword
+
+                            )
                         }}
                             onLogInByGoogleClick={() => {
                         }}
@@ -54,9 +58,8 @@ class Auth extends React.Component {
                             onEmailChange={() => {(e, v) => (this.handleInput('signUpEmail', e, v))
                             }}
                             onPasswordChange={() => {(e, v) => (this.handleInput('signUpPassword', e, v))
-
                             }}
-                            onRetypePasswordChange={() => {
+                            onRetypePasswordChange={() => {e, v) => (this.handleInput('signUpRetypePassword', e, v))
                             }}
                             onSignUpClick={() => {
                             }}
