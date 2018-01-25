@@ -5,25 +5,48 @@ import SignUp from './SignUp'
 
 import {connect} from 'react-redux'
 
-const Auth = (props) => (
-    props.userData ?
-        props.children
-        :
-        <div>
-            <LogIn
-            onEmailChange={()=>{}}
-            onPasswordChange={()=>{}}
-            onLogInClick={()=>{}}
-            onLogInByGoogleClick={()=>{}}
-            />
-            <SignUp
-            onEmailChange={()=>{}}
-            onPasswordChange={()=>{}}
-            onRetypePasswordChange={()=>{}}
-            onSignUpClick={()=>{}}
-            />
-        </div>
-)
+class Auth extends React.Component {
+    state = {
+        loginEmail: '',
+        loginPassword: '',
+        signUpEmail: '',
+        signUpPassword: '',
+        signUpRetypePassword: ''
+
+    }
+
+
+
+    render() {
+        return (
+            props.userData ?
+                props.children
+                :
+                <div>
+                    <LogIn
+                        onEmailChange={() => {
+                        }}
+                        onPasswordChange={() => {
+                        }}
+                        onLogInClick={() => {
+                        }}
+                        onLogInByGoogleClick={() => {
+                        }}
+                    />
+                    <SignUp
+                        onEmailChange={() => {
+                        }}
+                        onPasswordChange={() => {
+                        }}
+                        onRetypePasswordChange={() => {
+                        }}
+                        onSignUpClick={() => {
+                        }}
+                    />
+                </div>
+        )
+    }
+}
 
 const mapStateToProps = state => ({
     userData: state.auth.user
