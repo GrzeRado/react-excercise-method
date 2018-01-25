@@ -23,7 +23,6 @@ class Auth extends React.Component {
         this.setState(newState)
     }
 
-
     /// we can use the same as below comes from ES6. Its very simpler
     //
     // handleInput = (nameInState, event, value) => {
