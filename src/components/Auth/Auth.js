@@ -4,6 +4,8 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 
 import {connect} from 'react-redux'
+import {logIn} from '../../state/auth'
+
 
 class Auth extends React.Component {
     state = {
@@ -23,13 +25,10 @@ class Auth extends React.Component {
 
     /// we can use the same as below comes from ES6. Its very simpler
     //
-    // handleInput = (nameInState, e, v) => {
-    const
-    newState = {}
-    newState
-    [nameInState] = value
-    this.setState(newState)
-
+    // handleInput = (nameInState, event, value) => {
+    //    this.setState({
+    //      [nameInState]: value
+    //      })
     // }
 
 
