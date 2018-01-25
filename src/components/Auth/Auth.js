@@ -15,7 +15,11 @@ class Auth extends React.Component {
 
     }
 
-
+handleInput = (event, value) => {
+        this.setState({
+            loginEmail: value
+        })
+}
 
     render() {
         return (
@@ -24,7 +28,7 @@ class Auth extends React.Component {
                 :
                 <div>
                     <LogIn
-                        onEmailChange={() => {
+                        onEmailChange={() => {this.handleInput
                         }}
                         onPasswordChange={() => {
                         }}
