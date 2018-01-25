@@ -8,6 +8,7 @@ import reduxCounterReducer from './state/reduxCounter'
 import asyncActionsReducer from './state/asyncActions'
 import loadingReducer from './state/loading'
 import authReducer from './state/auth'
+import authReducer, {initAuth} from "./state/auth";
 
 const reducer = combineReducers({
     todo: todoReducer,
@@ -28,5 +29,7 @@ const store = createStore(
         applyMiddleware(thunk)
     )
 )
+
+store.dispatch(initAuth())
 
 export default store
