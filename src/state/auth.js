@@ -1,5 +1,5 @@
 
-import {auth} from '../firebase'
+import {auth, googleProvider} from '../firebase'
 
 const SET_USER = 'auth/SET_USER'
 
@@ -24,7 +24,7 @@ export const logIn = (email, password) => (dispatch, getState) => {
 }
 
 export const logInByGoogle = () => (dispatch, getStat) => {
-    auth.signInWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(googleProvider)
         .then(() => console.log('Logged in!'))
         .catch(() => alert('Something wrong!'))
 }
