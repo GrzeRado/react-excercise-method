@@ -2,12 +2,20 @@
 import {database, auth, googleProvider} from '../firebase'
 
 const SET_USER = 'auth/SET_USER'
+const SET_LOGIN_LOGS = 'auth/SET_LOGIN_LOGS'
 
 //this function return object - creator of function
 const setUser = (user) => ({
     type: SET_USER,
     userData: user
 })
+
+// make creator user
+const setLoginLogs = (logs) => ({
+    type: SET_LOGIN_LOGS,
+    logsData: logs
+})
+
 
 //this function return function(initAuth init from store.js and have function in function - initAuth have function onAuthStateChanged
 export const initAuth = () => (dispatch, getState) => {
@@ -19,6 +27,11 @@ export const initAuth = () => (dispatch, getState) => {
             dispatch(logLoginDate())
         }
     })
+}
+
+// make it to refresh logs
+const syncLoginLogs = () => (dispatch, getState) =>{
+
 }
 
 const logLoginDate = () => (dispatch, getState) => { //Function uid comes from store.js and change state
