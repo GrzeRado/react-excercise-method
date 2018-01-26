@@ -58,6 +58,12 @@ export default (state = initialState, action) => {
                 ...state,
                 user: action.userData
             }
+        case SET_LOGIN_LOGS:
+            return {
+                ...state,
+                logInLOgs: action.loginData
+            }
+
         default:
             return state
     }
