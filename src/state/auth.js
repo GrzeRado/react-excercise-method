@@ -28,7 +28,7 @@ export const logInByGoogle = () => (dispatch, getState) => {
         .then(() => console.log('Logged in!'))
         .catch(() => alert('Something wrong!'))
 }
-export const createUser = () => (dispatch, getState) => {
+export const createUser = () => (email, password) => {
     auth.createUserWithEmailAndPassword('User created!')
         .then(() => console.log('Logged in!'))
         .catch(() => alert('Something wrong!'))
