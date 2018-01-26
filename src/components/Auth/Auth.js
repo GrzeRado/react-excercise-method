@@ -4,7 +4,7 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 
 import {connect} from 'react-redux'
-import {logIn} from '../../state/auth'
+import {logIn, logInByGoogle} from '../../state/auth'
 
 
 class Auth extends React.Component {
@@ -45,8 +45,7 @@ class Auth extends React.Component {
                             this.state.loginEmail,
                             this.state.loginPassword
                         )}
-                        onLogInByGoogleClick={() => {
-                        }}
+                        onLogInByGoogleClick={() => {this.props.onLoginInByGoogleClick}}
                     />
                     <SignUp
                         onEmailChange={(e, v) => (this.handleInput('signUpEmail', e, v))}
@@ -60,11 +59,12 @@ class Auth extends React.Component {
     }
 }
                     const mapStateToProps=state => ({
-                    userData: state.auth.user
+                    userData: state.auth.userData
                 })
 
                     const mapDispatchToProps = dispatch => ({
-                        onLoginClick: () => dispatch(logIn())
+                        onLoginClick: (email, password) => dispatch(logIn(email, password)),
+                        onLoginInByGoogleClick: () => dispatch(logInByGoogle())
                         })
 
                     export default connect(
