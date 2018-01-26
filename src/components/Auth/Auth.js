@@ -4,7 +4,7 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 
 import {connect} from 'react-redux'
-import {logIn, logInByGoogle} from '../../state/auth'
+import {logIn, logInByGoogle, createUser} from '../../state/auth'
 
 
 class Auth extends React.Component {
@@ -31,6 +31,22 @@ class Auth extends React.Component {
     //      })
     // }
 
+    createUserHandler = () => {
+        if (
+            this.state.signUpPassword
+            !==
+            this.state.signUpRetypePassword
+        ) {
+            alert('Podane hasla są jednakowe!')
+            return
+        }
+
+
+        this.props.onSignUpClick(
+            this.state.signUpEmail,
+            this.state.signUpPassword
+        )
+    }
 
     render() {
         return (
@@ -51,7 +67,10 @@ class Auth extends React.Component {
                         onEmailChange={(e, v) => (this.handleInput('signUpEmail', e, v))}
                         onPasswordChange={(e, v) => (this.handleInput('signUpPassword', e, v))}
                         onRetypePasswordChange={(e, v) => (this.handleInput('signUpRetypePassword', e, v))}
-                        onSignUpClick={() => {
+                        onSignUpClick={() => {this.props.onSignUpClick(
+                            this.state.signUpEmail,
+                            this.state.signUpPassword,
+                        )
                         }}
                     />
                 </div>
@@ -64,7 +83,8 @@ class Auth extends React.Component {
 
                     const mapDispatchToProps = dispatch => ({
                         onLoginClick: (email, password) => dispatch(logIn(email, password)),
-                        onLoginInByGoogleClick: () => dispatch(logInByGoogle())
+                        onLogInByGoogleClick: () => dispatch(logInByGoogle()),
+                        onSignUpClick: (email, password) => dispatch(createUser(email, password))
                         })
 
                     export default connect(
