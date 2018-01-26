@@ -25,13 +25,16 @@ export const initAuth = () => (dispatch, getState) => {
 
         if(user) { //check if not null
             dispatch(logLoginDate())
+            dispatch(syncLoginLogs())
         }
     })
 }
 
 // make it to refresh logs
 const syncLoginLogs = () => (dispatch, getState) =>{
-
+    const uid = getState().auth.user.uid
+    database.ref(`/users/${uid}/loginLogs`)
+        .on('value', (snapshot) => dispatch(setLoginLogs(snapshot.val())))
 }
 
 const logLoginDate = () => (dispatch, getState) => { //Function uid comes from store.js and change state
@@ -74,7 +77,7 @@ export default (state = initialState, action) => {
         case SET_LOGIN_LOGS:
             return {
                 ...state,
-                logInLOgs: action.loginData
+                logInLOgs: action.logsData
             }
 
         default:
