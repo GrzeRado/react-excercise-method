@@ -23,8 +23,13 @@ export const logIn = (email, password) => (dispatch, getState) => {
         .catch(() => alert('Something wrong!'))
 }
 
-export const logInByGoogle = () => (dispatch, getStat) => {
+export const logInByGoogle = () => (dispatch, getState) => {
     auth.signInWithEmailAndPassword(googleProvider)
+        .then(() => console.log('Logged in!'))
+        .catch(() => alert('Something wrong!'))
+}
+export const createUser = () => (dispatch, getState) => {
+    auth.createUserWithEmailAndPassword('User created!')
         .then(() => console.log('Logged in!'))
         .catch(() => alert('Something wrong!'))
 }
