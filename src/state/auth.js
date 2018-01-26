@@ -53,7 +53,7 @@ export const logIn = (email, password) => (dispatch, getState) => {
 }
 
 export const logInByGoogle = () => (dispatch, getState) => {
-    auth.signInWithEmailAndPassword(googleProvider)
+    auth.signInWithPopup(googleProvider)
         .then(() => console.log('Logged in!'))
         .catch(() => alert('Something wrong!'))
 }

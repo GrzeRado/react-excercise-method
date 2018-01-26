@@ -50,39 +50,41 @@ class Forms extends React.Component {
 
     render() {
         return (
-                <div>
-                    <LogIn
-                        onEmailChange={(e, v) => (this.handleInput('loginEmail', e, v))}
-                        onPasswordChange={(e, v) => (this.handleInput('loginPassword', e, v))}
-                        onLogInClick={() => this.props.onLogInClick(
-                            this.state.loginEmail,
-                            this.state.loginPassword
-                        )}
-                        onLogInByGoogleClick={() => {this.props.onLoginInByGoogleClick}}
-                    />
-                    <SignUp
-                        onEmailChange={(e, v) => (this.handleInput('signUpEmail', e, v))}
-                        onPasswordChange={(e, v) => (this.handleInput('signUpPassword', e, v))}
-                        onRetypePasswordChange={(e, v) => (this.handleInput('signUpRetypePassword', e, v))}
-                        onSignUpClick={() => {this.props.onSignUpClick(
+            <div>
+                <LogIn
+                    onEmailChange={(e, v) => (this.handleInput('loginEmail', e, v))}
+                    onPasswordChange={(e, v) => (this.handleInput('loginPassword', e, v))}
+                    onLogInClick={() => this.props.onLoginClick(
+                        this.state.loginEmail,
+                        this.state.loginPassword
+                    )}
+                    onLogInByGoogleClick={this.props.onLogInByGoogleClick}
+                />
+                <SignUp
+                    onEmailChange={(e, v) => (this.handleInput('signUpEmail', e, v))}
+                    onPasswordChange={(e, v) => (this.handleInput('signUpPassword', e, v))}
+                    onRetypePasswordChange={(e, v) => (this.handleInput('signUpRetypePassword', e, v))}
+                    onSignUpClick={() => {
+                        this.props.onSignUpClick(
                             this.state.signUpEmail,
                             this.state.signUpPassword,
                         )
-                        }}
-                    />
-                </div>
+                    }}
+                />
+            </div>
         )
     }
 }
-                    const mapStateToProps=state => ({})
 
-                    const mapDispatchToProps = dispatch => ({
-                        onLoginClick: (email, password) => dispatch(logIn(email, password)),
-                        onLogInByGoogleClick: () => dispatch(logInByGoogle()),
-                        onSignUpClick: (email, password) => dispatch(createUser(email, password))
-                        })
+const mapStateToProps = state => ({})
 
-                    export default connect(
-                    mapStateToProps,
-                    mapDispatchToProps
-                    )(Forms)
+const mapDispatchToProps = dispatch => ({
+    onLoginClick: (email, password) => dispatch(logIn(email, password)),
+    onLogInByGoogleClick: () => dispatch(logInByGoogle()),
+    onSignUpClick: (email, password) => dispatch(createUser(email, password))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Forms)
