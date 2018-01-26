@@ -3,11 +3,13 @@ import {auth} from '../firebase'
 
 const SET_USER = 'auth/SET_USER'
 
+//this function return object - creator of function
 const setUser = (user) => ({
     type: SET_USER,
     userData: user
 })
 
+//this function return function(initAuth init from store.js and have function in function - initAuth have function onAuthStateChanged
 export const initAuth = () => (dispatch, getState) => {
     auth.onAuthStateChanged((user) => {
         // if not logged in user is null !
