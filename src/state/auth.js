@@ -21,6 +21,12 @@ export const logIn = (email, password) => (dispatch, getState) => {
         .catch(() => alert('Something wrong!'))
 }
 
+export const logInByGoogle = () => (dispatch, getStat) => {
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => console.log('Logged in!'))
+        .catch(() => alert('Something wrong!'))
+}
+
 const initialState = {
     user: null
 }
