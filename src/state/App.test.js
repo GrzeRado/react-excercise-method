@@ -10,3 +10,9 @@ test('it can add "10" + "5" and equals 15', () => {
 })
 
 //--------------------------------------
+
+test('fetching randomuser data', () =>{
+    return fetch('https://randomuser.me/api')
+        .then(response => response.json())
+        .then(data => expect(data).toBeDefined())
+})
