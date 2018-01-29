@@ -5,8 +5,8 @@ test('it can and 2 + 5 and equals 7', () => {
 })
 
 
-test('it can add 10 + 5 and equals 15', () => {
+test('it can add "10" + "5" and equals 15', () => {
     expect(add('10', '5')).toBe(15)
-}
+})
 
 //--------------------------------------
